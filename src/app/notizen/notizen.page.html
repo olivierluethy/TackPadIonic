@@ -3,6 +3,11 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="addTask()">
+                <ion-icon slot="icon-only" ios="add-outline" md="add-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
         <ion-title>Notizen</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -26,9 +31,9 @@
             </ion-item>
         </ion-list>
     </div>
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="primary" (click)="addTask()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
-<div class="item-note">
-    <ion-button color="primary" (click)="addTask()">
-        <ion-icon name="add"></ion-icon>
-    </ion-button>
-</div>
