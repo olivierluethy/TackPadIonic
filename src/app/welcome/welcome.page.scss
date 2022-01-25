@@ -1,0 +1,39 @@
+ion-slide {
+    display: block;
+}
+
+ion-slides {
+    height: 100%;
+    h1 {
+        padding-top: 400px;
+        padding-bottom: 50px;
+    }
+}
+
+.slide2 h1 {
+    padding-top: 10px;
+    color: black;
+}
+
+.slide2 img {
+    width: 100%;
+}
+
+.slide3 h1 {
+    padding-top: 350px;
+}
+
+.first {
+    background-color: #cccccc;
+    /* TODO: Farbe anpassen -> Wie im Prototyp */
+}
+
+.second {
+    background-color: #cccccc;
+    /* TODO: Farbe anpassen -> Wie im Prototyp */
+}
+
+.third {
+    background-color: #cccccc;
+    /* TODO: Farbe anpassen -> Wie im Prototyp */
+}

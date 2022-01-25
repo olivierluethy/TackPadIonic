@@ -1,0 +1,31 @@
+<ion-content class="ion-no-padding">
+    <!-- TOOD: (Hilfe siehe auch SCSS) -->
+    <ion-slides pager>
+        <ion-slide style="background-color: lightblue">
+            <div class="slide">
+                <div class="slide1">
+                    <h1>Welcome To The TackPad App</h1>
+                </div>
+
+            </div>
+
+        </ion-slide>
+
+        <ion-slide style="background-color: white">
+            <div class="slide2">
+                <img src="/assets/add-edit-delete.png" class="icon" />
+                <h1>Add new notes, edit or delete them</h1>
+            </div>
+
+        </ion-slide>
+
+        <ion-slide style="background-color: green;">
+            <div class="slide3">
+                <h1>Let's create your first account!</h1>
+                <ion-button fill="outline" color="light" [href]="'/registration'">
+                    <ion-icon name="arrow-forward"></ion-icon> Let's go!</ion-button>
+            </div>
+
+        </ion-slide>
+    </ion-slides>
+</ion-content>

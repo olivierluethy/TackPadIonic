@@ -1,0 +1,7 @@
+{
+  "name": "TackPadIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

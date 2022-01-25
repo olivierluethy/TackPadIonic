@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tackpaduserauth-f78dc": {
+      "hosting": {
+        "app": [
+          "tackpaduserauth-f78dc"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tackpaduserauth-f78dc"
+  }
+}
