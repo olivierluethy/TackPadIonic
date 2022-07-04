@@ -15,10 +15,12 @@
 <ion-content padding>
     <ion-item>
         <ion-input type="text" placeholder="Enter task" [(ngModel)]="taskName"></ion-input>
+        <ion-input type="text" placeholder="Enter description" [(ngModel)]="taskDescription"></ion-input>
+        <ion-input type="time" min="09:00" max="18:00" [(ngModel)]="taskTime"></ion-input>
     </ion-item>
     <div padding>
         <ion-list>
-            <ion-item *ngFor="let todo of taskList; let i = index">
+            <ion-item *ngFor="let todo of taskList; let i = index" (click)="viewToDo(todo)">
                 {{todo}}
                 <div class="item-note" slot="end">
                     <ion-button color="danger" clear (click)="deleteTask(i)">

@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
@@ -9,8 +10,11 @@ import { AlertController } from '@ionic/angular';
 export class NotizenPage implements OnInit {
 
   taskName: any = ""; // Entered Text
-  taskList = []; // Array to store tasks
+  taskDescription: any ="";
+  taskTime: any="";
   newText: any="";
+
+  taskList=[];
 
   constructor(public alertController: AlertController) {}
 
@@ -22,10 +26,11 @@ export class NotizenPage implements OnInit {
   // If length is greater than 0, then only we add taskName to taskList array
   // After adding we reset the taskName
   addTask() {
-    if (this.taskName.length > 0) {
-      let task = this.taskName;
-      this.taskList.push(task);
+    if (this.taskName.length > 0 && this.taskDescription.length > 0 && this.taskTime.length > 0) {
+      this.taskList.push(this.taskName, this.taskDescription, this.taskTime);
       this.taskName = "";
+      this.taskDescription ="";
+      this.taskTime="";
     }else {
       this.fieldIsEmpty();
     }
@@ -57,6 +62,16 @@ export class NotizenPage implements OnInit {
             name: 'name1',
             type: 'text',
             value: value
+          },
+          {
+            name: 'name2',
+            type: 'textarea',
+            value: value
+          },
+          {
+            name: 'name3',
+            type: 'time',
+            value: value
           }
         ],
         buttons: [
@@ -72,6 +87,9 @@ export class NotizenPage implements OnInit {
             handler: (name1) => {
               console.log('Confirm Ok', name1.name1);
               resolve(name1.name1);
+              resolve(name1.name2);
+              resolve(name1.name3);
+              const newNote:Note = {taskName: name1.name1, taskDescription: name1.name2, taskTime: name1.name3}
             }
           }
         ]
@@ -86,4 +104,14 @@ export class NotizenPage implements OnInit {
       this.taskList[Index]=res;
     });
   }
+
+  viewToDo(todo) {
+    console.log("Hallo");
+  }
+}
+
+interface Note {
+  taskName: string;
+  taskDescription: string;
+  taskTime: Time;
 }
