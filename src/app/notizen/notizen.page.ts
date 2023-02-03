@@ -26,15 +26,28 @@ export class NotizenPage implements OnInit {
   // If length is greater than 0, then only we add taskName to taskList array
   // After adding we reset the taskName
   addTask() {
+    // Check if taskName, taskDescription and taskTime are not empty
     if (this.taskName.length > 0 && this.taskDescription.length > 0 && this.taskTime.length > 0) {
-      this.taskList.push(this.taskName, this.taskDescription, this.taskTime);
+      // Create a new task object with taskName, taskDescription and taskTime
+      let task = {
+        taskName: this.taskName,
+        taskDescription: this.taskDescription,
+        taskTime: this.taskTime
+      };
+      // Add the task to the taskList array
+      this.taskList.push(task);
+      // Reset taskName, taskDescription and taskTime to empty strings
       this.taskName = "";
-      this.taskDescription ="";
-      this.taskTime="";
-    }else {
+      this.taskDescription = "";
+      this.taskTime = "";
+    } else {
+      // Call the fieldIsEmpty function if taskName, taskDescription or taskTime is empty
       this.fieldIsEmpty();
     }
   }
+
+  
+  
   // deleteTask Function
   // When user clicks the delete task button, this function is called with index i as parameter
   // Since tasks are added to taskList, we delete the task at index i using splice() array method
@@ -46,13 +59,14 @@ export class NotizenPage implements OnInit {
   async fieldIsEmpty() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
-      header: 'Field can not be empty',
+      header: "Field can't be empty",
       buttons: ['OK']
     });
 
     await alert.present();
   }
-  async changeTask(value: string): Promise <string> {
+  
+  async changeTask(taskName: string, taskDescription: string, taskTime: string): Promise <any> {
     return new Promise(async (resolve: any) => {
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -61,17 +75,17 @@ export class NotizenPage implements OnInit {
           {
             name: 'name1',
             type: 'text',
-            value: value
+            value: taskName
           },
           {
             name: 'name2',
             type: 'textarea',
-            value: value
+            value: taskDescription
           },
           {
             name: 'name3',
             type: 'time',
-            value: value
+            value: taskTime
           }
         ],
         buttons: [
@@ -84,12 +98,9 @@ export class NotizenPage implements OnInit {
             }
           }, {
             text: 'Ok',
-            handler: (name1) => {
-              console.log('Confirm Ok', name1.name1);
-              resolve(name1.name1);
-              resolve(name1.name2);
-              resolve(name1.name3);
-              const newNote:Note = {taskName: name1.name1, taskDescription: name1.name2, taskTime: name1.name3}
+            handler: (data) => {
+              console.log('Confirm Ok', data);
+              resolve(data);
             }
           }
         ]
@@ -98,12 +109,12 @@ export class NotizenPage implements OnInit {
     });
   }
 
-  async editTask(Todo, Index) {
-    await this.changeTask(Todo).then((res) => {
-      console.log(Todo, res);
-      this.taskList[Index]=res;
+  async editTask(task, index) {
+    await this.changeTask(task.taskName, task.taskDescription, task.taskTime).then((data) => {
+      this.taskList[index]={ taskName: data.name1, taskDescription: data.name2, taskTime: data.name3};
     });
   }
+
 
   viewToDo(todo) {
     console.log("Hallo");

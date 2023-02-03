@@ -20,17 +20,17 @@
     </ion-item>
     <div padding>
         <ion-list>
-            <ion-item *ngFor="let todo of taskList; let i = index" (click)="viewToDo(todo)">
-                {{todo}}
-                <div class="item-note" slot="end">
-                    <ion-button color="danger" clear (click)="deleteTask(i)">
-                        <ion-icon name="trash"></ion-icon>
-                    </ion-button>
-                    <ion-button color="success" clear (click)="editTask(todo, i)">
-                        <ion-icon name="create-outline"></ion-icon>
-                    </ion-button>
-                </div>
-            </ion-item>
+            <ion-card *ngFor="let task of taskList; let i = index">
+                <ion-card-header>
+                  <ion-card-title>{{ task.taskName }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <p>{{ task.taskDescription }}</p>
+                  <p>{{ task.taskTime }}</p>
+                  <ion-button (click)="editTask(task, i)">Edit</ion-button>
+                  <ion-button (click)="deleteTask(i)">Delete</ion-button>
+                </ion-card-content>
+              </ion-card>              
         </ion-list>
     </div>
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">
